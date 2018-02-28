@@ -61,18 +61,6 @@ module.exports.get = () => {
           message: 'You must have to type a "Name"'
         }
       },
-      toto: {
-        label: 'toto',
-        enable: true,
-        weight: 200,
-        type: 'text',
-        defaultValue: '',
-        errors: [],
-        validator: {
-          regex: /^[\D\s]+$/,
-          message: 'You must have to type a toto'
-        }
-      },
       lastName: {
         label: 'Last Name',
         enable: true,
