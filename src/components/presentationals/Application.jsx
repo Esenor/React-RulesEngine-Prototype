@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { userSignupForm } from '../../logic/business/forms/userSignup.form'
 import { formAdapterLogicToDisplay } from '../../logic/common/formAdapter'
-import formHelper from '../../logic/display/formHelper'
+import applicationDisplay from '../../logic/display/applicationDisplay'
+import { getFormErrors, getFormValues } from '../../logic/common/formHelper'
 import { cloneDeep } from 'lodash'
 
 class Application extends Component {
@@ -13,7 +14,7 @@ class Application extends Component {
     // Get initial display form
     let initialDisplayForm = formAdapterLogicToDisplay(userSignupForm.getState({}).getDataObject())
     // Get initial form values
-    let userParamsForm = formHelper.get(this).getFormValues(initialDisplayForm)
+    let userParamsForm = getFormValues(initialDisplayForm)
     // Set initial state
     this.state = {
       formRecipe: initialDisplayForm,
@@ -32,7 +33,7 @@ class Application extends Component {
     // Get new display form state
     let displayForm = formAdapterLogicToDisplay(userSignupForm.getState(formValues).getDataObject())
     // Get cleaned form values
-    let cleanedFormValues = formHelper.get(this).getFormValues(displayForm)
+    let cleanedFormValues = getFormValues(displayForm)
     // update history
     let formRecipeHistory = newState.formRecipeHistory
     formRecipeHistory.push(displayForm)
@@ -54,7 +55,7 @@ class Application extends Component {
     this.setState({
       result: {
         values: this.state.formValues,
-        errors: formHelper.get(this).getFormErrors(this.state.formRecipe)
+        errors: getFormErrors(this.state.formRecipe)
       }
     })
   }
@@ -65,7 +66,7 @@ class Application extends Component {
       <React.Fragment>
         <article className="App">
           <form>
-            {formHelper.get(this).formDOMized(this.state.formRecipe) }
+            {applicationDisplay.get(this).formDOMized(this.state.formRecipe) }
             <button onClick={this.finishForm}>Send form</button>
           </form>
         </article>
