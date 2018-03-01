@@ -1,28 +1,4 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 60px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 form {
-  width: 300px;
   text-align: left;
   padding: 20px;
 }
@@ -32,6 +8,9 @@ ul {
 }
 .error {
   color: red;
+}
+.error_field {
+  border: 1px solid red;
 }
 input, select {
   width: 100%;
@@ -44,4 +23,8 @@ p {
 }
 form>div {
   margin-top: 20px; 
+}
+article {
+  width: 50%;
+  display: inline-block;
 }

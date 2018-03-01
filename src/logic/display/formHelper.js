@@ -5,6 +5,20 @@ import { byWeight } from '../common/common'
 export default {
   get (that) {
     return {
+      getFormValues: (displayFormState) => {
+        return displayFormState.reduce((accumulator, fieldDisplay) => {
+          accumulator[fieldDisplay.id] = fieldDisplay.defaultValue
+          return accumulator
+        }, {})
+      },
+      getFormErrors: (displayFormState) => {
+        return displayFormState.reduce((accumulator, field) => {
+          if (field.errors.length > 0) {
+            accumulator.push({[field.id]: field.errors})
+          }
+          return accumulator
+        }, [])
+      },
       /**
        *
        */
@@ -63,7 +77,7 @@ export default {
               return (
                 <div key={ `wrapper_${field.id}` }>
                   <p>{field.label}</p>
-                  <input type="text" id={field.id} name={field.id} key={field.id} defaultValue={field.defaultValue} onChange={that.updateForm} />
+                  <input type="text" id={field.id} name={field.id} key={field.id} className={(field.errors.length > 0) ? 'error_field' : null} defaultValue={field.defaultValue} onChange={that.updateForm} />
                   {this.get(that).errorDOMized(field)}
                 </div>
               )
@@ -71,7 +85,7 @@ export default {
               return (
                 <div key={ `wrapper_${field.id}` }>
                   <p>{field.label}</p>
-                  <select id={field.id} name={field.id} key={field.id} defaultValue={field.defaultValue} onChange={that.updateForm}>
+                  <select id={field.id} name={field.id} key={field.id} className={(field.errors.length > 0) ? 'error_field' : null} defaultValue={field.defaultValue} onChange={that.updateForm}>
                     {this.get(that).selectOptionDOMized(field)}
                   </select>
                   {this.get(that).errorDOMized(field)}
@@ -81,7 +95,7 @@ export default {
               return (
                 <div key={ `wrapper_${field.id}` }>
                   <p>{field.label}</p>
-                  <input type="text" id={field.id} name={field.id} key={field.id} defaultValue={field.defaultValue} onChange={that.updateForm} />
+                  <input type="text" id={field.id} name={field.id} key={field.id} className={(field.errors.length > 0) ? 'error_field' : null} defaultValue={field.defaultValue} onChange={that.updateForm} />
                   {this.get(that).errorDOMized(field)}
                 </div>
               )

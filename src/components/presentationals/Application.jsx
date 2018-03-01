@@ -6,32 +6,29 @@ import formHelper from '../../logic/display/formHelper'
 class Application extends Component {
   constructor (props) {
     super(props)
+    // Bind methods
     this.updateForm = this.updateForm.bind(this)
     this.finishForm = this.finishForm.bind(this)
-
+    // Get initial display form
     let initialDisplayForm = formAdapterLogicToDisplay(userSignupForm.getState({}).getDataObject())
-    let userParamsForm = initialDisplayForm.reduce((accumulator, fieldDisplay) => {
-      accumulator[fieldDisplay.id] = fieldDisplay.defaultValue
-      return accumulator
-    }, {})
-
+    // Get initial form values
+    let userParamsForm = formHelper.get(this).getFormValues(initialDisplayForm)
+    // Set initial state
     this.state = {
       formRecipe: initialDisplayForm,
-      formValues: userParamsForm
+      formValues: userParamsForm,
+      result: {}
     }
   }
 
   updateForm (event) {
-    let state = (this.state.formValues) ? this.state.formValues : {}
-    let formValues = Object.assign(state, { [event.target.id]: event.target.value })
-
+    // Update the state with the event field value
+    let formValues = Object.assign(this.state, { [event.target.id]: event.target.value })
+    // Get new display form state
     let displayForm = formAdapterLogicToDisplay(userSignupForm.getState(formValues).getDataObject())
-
-    let cleanedFormValues = displayForm.reduce((accumulator, fieldDisplay) => {
-      accumulator[fieldDisplay.id] = fieldDisplay.defaultValue
-      return accumulator
-    }, {})
-
+    // Get cleaned form values
+    let cleanedFormValues = formHelper.get(this).getFormValues(displayForm)
+    // Update state with new form state and cleaned form values
     this.setState({
       formRecipe: displayForm,
       formValues: cleanedFormValues
@@ -40,18 +37,26 @@ class Application extends Component {
 
   finishForm (event) {
     event.preventDefault()
-    window.alert(JSON.stringify(this.state.formValues, null, 2))
+    this.setState({
+      result: {
+        values: this.state.formValues,
+        errors: formHelper.get(this).getFormErrors(this.state.formRecipe)
+      }
+    })
   }
 
   render () {
     //
     return (
-      <div className="App">
-        <form>
-          {formHelper.get(this).formDOMized(this.state.formRecipe) }
-          <button onClick={this.finishForm}>Send</button>
-        </form>
-      </div>
+      <React.Fragment>
+        <article className="App">
+          <form>
+            {formHelper.get(this).formDOMized(this.state.formRecipe) }
+            <button onClick={this.finishForm}>Send form</button>
+          </form>
+        </article>
+        <article><pre>{JSON.stringify(this.state.result, null, 2)}</pre></article>
+      </React.Fragment>
     )
   }
 }
