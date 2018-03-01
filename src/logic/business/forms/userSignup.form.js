@@ -15,6 +15,7 @@ export const userSignupForm = {
       formRules.selectFieldDefaultValueIsOneOfValues,
       formRules.validateEmailAndEmailValidateFieldAreEqual,
       formRules.assignFieldPerCustomerType,
+      formRules.overwrideCategoryPerCustomerType,
       formRules.onlyFrenchCanBeProfessional,
       formRules.removeDisabledField
     ]

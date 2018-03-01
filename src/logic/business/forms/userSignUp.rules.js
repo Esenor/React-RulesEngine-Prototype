@@ -90,6 +90,19 @@ module.exports.assignFieldPerCustomerType = (isolatedRecipe) => {
 }
 
 /** ************************************************************************
+ * Overwride field category by customerType
+ */
+module.exports.overwrideCategoryPerCustomerType = (isolatedRecipe) => {
+  switch (isolatedRecipe.fields.customerType.defaultValue) {
+    case 'pro':
+      isolatedRecipe.fields.socialReason.metaData.category = 'contact'
+      isolatedRecipe.fields.country.metaData.category = 'contact'
+      break
+  }
+  return isolatedRecipe
+}
+
+/** ************************************************************************
  * Only French customer can be professional
  */
 module.exports.onlyFrenchCanBeProfessional = (isolatedRecipe) => {

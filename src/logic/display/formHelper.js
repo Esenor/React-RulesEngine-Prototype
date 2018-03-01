@@ -63,19 +63,19 @@ export default {
                 </section>
               )
               : ''}
-            { (contactFormCategory.length > 0)
-              ? (
-                <section>
-                  <h1>Contact</h1>
-                  {this.get(that).formCategoryDOMized(contactFormCategory.sort(byWeight)) }
-                </section>
-              )
-              : ''}
             { (personalFormCategory.length > 0)
               ? (
                 <section>
                   <h1>Personal</h1>
                   {this.get(that).formCategoryDOMized(personalFormCategory.sort(byWeight)) }
+                </section>
+              )
+              : ''}
+            { (contactFormCategory.length > 0)
+              ? (
+                <section>
+                  <h1>Contact</h1>
+                  {this.get(that).formCategoryDOMized(contactFormCategory.sort(byWeight)) }
                 </section>
               )
               : ''}

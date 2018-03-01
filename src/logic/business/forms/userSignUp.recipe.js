@@ -85,7 +85,7 @@ module.exports.get = () => {
       email: {
         label: 'Email',
         enable: true,
-        weight: 150,
+        weight: 500,
         type: 'mail',
         defaultValue: '',
         errors: [],
@@ -100,7 +100,7 @@ module.exports.get = () => {
       emailValidate: {
         label: 'Validate email',
         enable: true,
-        weight: 160,
+        weight: 550,
         type: 'mail',
         defaultValue: '',
         errors: [],
