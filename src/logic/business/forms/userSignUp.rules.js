@@ -31,6 +31,13 @@ module.exports.validateFieldWithThisValidator = (isolatedRecipe) => {
   return isolatedRecipe
 }
 
+module.exports.validateEmailAndEmailValidateFieldAreEqual = (isolatedRecipe) => {
+  if (isolatedRecipe.fields.email.defaultValue !== isolatedRecipe.fields.emailValidate.defaultValue) {
+    isolatedRecipe.fields.emailValidate.errors.push('Email need to be the same')
+  }
+  return isolatedRecipe
+}
+
 /** ************************************************************************
  * Select field defaultValue can only have a "values value"
  */

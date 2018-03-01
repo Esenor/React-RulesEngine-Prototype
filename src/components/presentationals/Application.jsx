@@ -1,30 +1,55 @@
 import React, { Component } from 'react'
 import { userSignupForm } from '../../logic/business/forms/userSignup.form'
+import { formAdapterLogicToDisplay } from '../../logic/common/formAdapter'
+import formHelper from '../../logic/display/formHelper'
 
 class Application extends Component {
   constructor (props) {
     super(props)
     this.updateForm = this.updateForm.bind(this)
-    this.state = {}
+    this.finishForm = this.finishForm.bind(this)
+
+    let initialDisplayForm = formAdapterLogicToDisplay(userSignupForm.getState({}).getDataObject())
+    let userParamsForm = initialDisplayForm.reduce((accumulator, fieldDisplay) => {
+      accumulator[fieldDisplay.id] = fieldDisplay.defaultValue
+      return accumulator
+    }, {})
+
+    this.state = {
+      formRecipe: initialDisplayForm,
+      formValues: userParamsForm
+    }
   }
 
   updateForm (event) {
-    event.preventDefault()
-    let nextState = (this.state.formFields) ? this.state.formFields : {}
+    let state = (this.state.formValues) ? this.state.formValues : {}
+    let formValues = Object.assign(state, { [event.target.id]: event.target.value })
+
+    let displayForm = formAdapterLogicToDisplay(userSignupForm.getState(formValues).getDataObject())
+
+    let cleanedFormValues = displayForm.reduce((accumulator, fieldDisplay) => {
+      accumulator[fieldDisplay.id] = fieldDisplay.defaultValue
+      return accumulator
+    }, {})
+
     this.setState({
-      formFields: Object.assign(nextState, { [event.target.id]: event.target.value })
+      formRecipe: displayForm,
+      formValues: cleanedFormValues
     })
   }
 
+  finishForm (event) {
+    event.preventDefault()
+    window.alert(JSON.stringify(this.state.formValues, null, 2))
+  }
+
   render () {
-    let params = this.state.formFields
-    //
-    let userSignupState = userSignupForm.getState(params).getDataObject()
     //
     return (
       <div className="App">
         <form>
-          { formDOMized(userSignupState, this) }
+          {formHelper.get(this).formDOMized(this.state.formRecipe) }
+          <button onClick={this.finishForm}>Send</button>
         </form>
       </div>
     )
@@ -32,56 +57,3 @@ class Application extends Component {
 }
 
 export default Application
-
-function formDOMized (formState, that = null) {
-  //
-  let sortedFieldsId = Object.keys(formState.fields).sort((itemA, itemB) => {
-    return formState.fields[itemA].weight - formState.fields[itemB].weight
-  })
-  //
-  let fieldsDOMized = sortedFieldsId.map((fieldId) => {
-    let field = formHelper.getField(formState, fieldId)
-    let errors = (field.errors.length > 0) ? (<small className="error">{field.errors.join(', ')}</small>) : null
-    switch (field.type) {
-      case 'text':
-        return (
-          <div>
-            <p>{field.label}</p>
-            <input type="text" id={fieldId} name={fieldId} key={fieldId} defaultValue={field.defaultValue} onChange={that.updateForm}/>
-            { errors }
-          </div>
-        )
-      case 'select':
-        return (
-          <div>
-            <p>{field.label}</p>
-            <select id={fieldId} name={fieldId} key={fieldId} defaultValue={field.defaultValue} onChange={that.updateForm}>
-              {formHelper.getSelectDOMized(field)}
-            </select>
-            { errors }
-          </div >
-        )
-      default:
-        return (
-          <div>
-            <p>{field.label}</p>
-            <input type="text" id={fieldId} name={fieldId} key={fieldId} defaultValue={field.defaultValue} onChange={that.updateForm}/>
-            { errors }
-          </div>
-        )
-    }
-  })
-  //
-  return fieldsDOMized
-}
-
-const formHelper = {
-  getField: (formState, fieldId) => {
-    return formState.fields[fieldId]
-  },
-  getSelectDOMized: (field) => {
-    return field.values.map((value) => {
-      return (<option key={value.id} value={value.id} >{value.label}</option>)
-    })
-  }
-}

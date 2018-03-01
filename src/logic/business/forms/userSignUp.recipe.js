@@ -25,7 +25,10 @@ module.exports.get = () => {
             weight: 200
           }
         ],
-        errors: []
+        errors: [],
+        metaData: {
+          category: 'account'
+        }
       },
       country: {
         label: 'Country',
@@ -47,7 +50,40 @@ module.exports.get = () => {
             weight: 200
           }
         ],
-        errors: []
+        errors: [],
+        metaData: {
+          category: 'personal'
+        }
+      },
+      email: {
+        label: 'Email',
+        enable: true,
+        weight: 150,
+        type: 'mail',
+        defaultValue: '',
+        errors: [],
+        metaData: {
+          category: 'contact'
+        },
+        validator: {
+          regex: /^([w.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/,
+          message: 'You must have to type an "Email"'
+        }
+      },
+      emailValidate: {
+        label: 'Validate email',
+        enable: true,
+        weight: 160,
+        type: 'mail',
+        defaultValue: '',
+        errors: [],
+        metaData: {
+          category: 'contact'
+        },
+        validator: {
+          regex: /^([w.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/,
+          message: 'You must have to type an "Email"'
+        }
       },
       firstName: {
         label: 'Name',
@@ -56,6 +92,9 @@ module.exports.get = () => {
         type: 'text',
         defaultValue: '',
         errors: [],
+        metaData: {
+          category: 'personal'
+        },
         validator: {
           regex: /^[\D\s]+$/,
           message: 'You must have to type a "Name"'
@@ -68,6 +107,9 @@ module.exports.get = () => {
         type: 'text',
         defaultValue: '',
         errors: [],
+        metaData: {
+          category: 'personal'
+        },
         validator: {
           regex: /^[\D\s]+$/,
           message: 'You must have to type a "Last Name"'
@@ -80,6 +122,9 @@ module.exports.get = () => {
         type: 'text',
         defaultValue: '',
         errors: [],
+        metaData: {
+          category: 'personal'
+        },
         validator: {
           regex: /^[^]+$/,
           message: 'You must have to type a "Social Reason"'

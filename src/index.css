@@ -22,11 +22,15 @@
 }
 
 form {
-  width: 250px;
+  width: 300px;
   text-align: left;
   padding: 20px;
 }
-small.error {
+ul {
+  padding: 0px 0px 0px 20px;
+  margin: 0px;
+}
+.error {
   color: red;
 }
 input, select {

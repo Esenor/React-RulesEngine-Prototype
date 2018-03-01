@@ -13,6 +13,7 @@ export const userSignupForm = {
       formRules.assignParamsToRecipe,
       formRules.validateFieldWithThisValidator,
       formRules.selectFieldDefaultValueIsOneOfValues,
+      formRules.validateEmailAndEmailValidateFieldAreEqual,
       formRules.assignFieldPerCustomerType,
       formRules.onlyFrenchCanBeProfessional,
       formRules.removeDisabledField
