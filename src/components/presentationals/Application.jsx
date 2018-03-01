@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { userSignupForm } from '../../logic/business/forms/userSignup.form'
 import { formAdapterLogicToDisplay } from '../../logic/common/formAdapter'
 import formHelper from '../../logic/display/formHelper'
+import { cloneDeep } from 'lodash'
 
 class Application extends Component {
   constructor (props) {
@@ -17,22 +18,35 @@ class Application extends Component {
     this.state = {
       formRecipe: initialDisplayForm,
       formValues: userParamsForm,
+      formRecipeHistory: [initialDisplayForm],
+      formValuesHistory: [userParamsForm],
       result: {}
     }
+    console.log(this.state)
   }
 
   updateForm (event) {
     // Update the state with the event field value
-    let formValues = Object.assign(this.state, { [event.target.id]: event.target.value })
+    const newState = cloneDeep(this.state)
+    let formValues = Object.assign({}, newState.formValues, { [event.target.id]: event.target.value })
     // Get new display form state
     let displayForm = formAdapterLogicToDisplay(userSignupForm.getState(formValues).getDataObject())
     // Get cleaned form values
     let cleanedFormValues = formHelper.get(this).getFormValues(displayForm)
+    // update history
+    let formRecipeHistory = newState.formRecipeHistory
+    formRecipeHistory.push(displayForm)
+    let formValuesHistory = newState.formValuesHistory
+    formValuesHistory.push(cleanedFormValues)
     // Update state with new form state and cleaned form values
     this.setState({
       formRecipe: displayForm,
-      formValues: cleanedFormValues
+      formValues: cleanedFormValues,
+      formRecipeHistory: formRecipeHistory,
+      formValuesHistory: formValuesHistory,
+      result: {}
     })
+    console.log(newState)
   }
 
   finishForm (event) {
