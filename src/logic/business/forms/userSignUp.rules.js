@@ -69,6 +69,22 @@ module.exports.assignFieldPerCustomerType = (isolatedRecipe) => {
       isolatedRecipe.fields.lastName.enable = false
       isolatedRecipe.fields.socialReason.enable = true
       break
+    case 'news':
+      isolatedRecipe.fields.firstName.enable = false
+      isolatedRecipe.fields.lastName.enable = false
+      isolatedRecipe.fields.socialReason.enable = false
+      isolatedRecipe.fields.country.enable = false
+      isolatedRecipe.fields.emailValidate.enable = false
+      break
+    case 'phone':
+      isolatedRecipe.fields.firstName.enable = false
+      isolatedRecipe.fields.lastName.enable = false
+      isolatedRecipe.fields.socialReason.enable = false
+      isolatedRecipe.fields.country.enable = false
+      isolatedRecipe.fields.email.enable = false
+      isolatedRecipe.fields.emailValidate.enable = false
+      isolatedRecipe.fields.phone.enable = true
+      break
   }
   return isolatedRecipe
 }

@@ -14,7 +14,7 @@ module.exports.get = () => {
         values: [
           {
             id: 'par',
-            label: 'particular',
+            label: 'Particular',
             enable: true,
             weight: 100
           },
@@ -23,6 +23,18 @@ module.exports.get = () => {
             label: 'Professional',
             enable: true,
             weight: 200
+          },
+          {
+            id: 'news',
+            label: 'Newsletter',
+            enable: true,
+            weight: 400
+          },
+          {
+            id: 'phone',
+            label: 'Callback',
+            enable: true,
+            weight: 300
           }
         ],
         errors: [],
@@ -53,6 +65,21 @@ module.exports.get = () => {
         errors: [],
         metaData: {
           category: 'personal'
+        }
+      },
+      phone: {
+        label: 'Phone number',
+        enable: false,
+        weight: 150,
+        type: 'mail',
+        defaultValue: '',
+        errors: [],
+        metaData: {
+          category: 'contact'
+        },
+        validator: {
+          regex: /^([0-9]+)$/,
+          message: 'You must have to type an "Email"'
         }
       },
       email: {

@@ -23,7 +23,7 @@ export default {
        *
        */
       selectOptionDOMized: (field) => {
-        return field.values.map((value) => {
+        return field.values.sort(byWeight).map((value) => {
           return (<option key={value.id} value={value.id} >{value.label}</option>)
         })
       },
@@ -49,20 +49,36 @@ export default {
         const METADATA_CATEGORY_CONTACT = 'contact'
         const METADATA_CATEGORY_PERSONAL = 'personal'
         //
+        const accountFormCategory = formAdapterDisplayCategory(displayFormState, METADATA_CATEGORY_ACCOUNT)
+        const contactFormCategory = formAdapterDisplayCategory(displayFormState, METADATA_CATEGORY_CONTACT)
+        const personalFormCategory = formAdapterDisplayCategory(displayFormState, METADATA_CATEGORY_PERSONAL)
+        //
         return (
           <React.Fragment>
-            <section>
-              <h1>Account</h1>
-              {this.get(that).formCategoryDOMized(formAdapterDisplayCategory(displayFormState, METADATA_CATEGORY_ACCOUNT).sort(byWeight)) }
-            </section>
-            <section>
-              <h1>Contact</h1>
-              {this.get(that).formCategoryDOMized(formAdapterDisplayCategory(displayFormState, METADATA_CATEGORY_CONTACT).sort(byWeight)) }
-            </section>
-            <section>
-              <h1>Personal</h1>
-              {this.get(that).formCategoryDOMized(formAdapterDisplayCategory(displayFormState, METADATA_CATEGORY_PERSONAL).sort(byWeight)) }
-            </section>
+            { (accountFormCategory.length > 0)
+              ? (
+                <section>
+                  <h1>Account</h1>
+                  {this.get(that).formCategoryDOMized(accountFormCategory.sort(byWeight)) }
+                </section>
+              )
+              : ''}
+            { (contactFormCategory.length > 0)
+              ? (
+                <section>
+                  <h1>Contact</h1>
+                  {this.get(that).formCategoryDOMized(contactFormCategory.sort(byWeight)) }
+                </section>
+              )
+              : ''}
+            { (personalFormCategory.length > 0)
+              ? (
+                <section>
+                  <h1>Personal</h1>
+                  {this.get(that).formCategoryDOMized(personalFormCategory.sort(byWeight)) }
+                </section>
+              )
+              : ''}
           </React.Fragment>
         )
       },
