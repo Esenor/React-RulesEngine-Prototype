@@ -24,9 +24,9 @@ module.exports.assignParamsToRecipe = (isolatedRecipe, isolatedParams) => {
  */
 module.exports.validateFieldWithThisValidator = (isolatedRecipe) => {
   Object.keys(isolatedRecipe.fields).forEach((key) => {
-    if (typeof isolatedRecipe.fields[key].validator !== 'undefined') {
-      if (!isolatedRecipe.fields[key].validator.regex.test(isolatedRecipe.fields[key].defaultValue)) {
-        isolatedRecipe.fields[key].errors.push(isolatedRecipe.fields[key].validator.message)
+    if (typeof isolatedRecipe.fields[key].metaData.validator !== 'undefined') {
+      if (!isolatedRecipe.fields[key].metaData.validator.regex.test(isolatedRecipe.fields[key].defaultValue)) {
+        isolatedRecipe.fields[key].errors.push(isolatedRecipe.fields[key].metaData.validator.message)
       }
     }
   })

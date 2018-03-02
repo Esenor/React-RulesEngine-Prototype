@@ -30,7 +30,7 @@ function resultSignUpForm (state, action) {
 
 function initializeSignUpForm (state, action) {
   const newState = cloneDeep(state)
-  let initialDisplayForm = formAdapterLogicToDisplay(userSignupForm.getState({}).getDataObject())
+  let initialDisplayForm = formAdapterLogicToDisplay(userSignupForm.getState(action.payload.prefilledValues).getDataObject())
   // Get initial form values
   let userParamsForm = getFormValues(initialDisplayForm)
   //

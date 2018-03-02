@@ -1,4 +1,5 @@
 import { ACTIONS_TYPES } from '../index'
+import { PREFILLED_VALUES_SIGN_UP } from '../../logic/business/humanize/defaultConfiguration'
 
 /**
  *
@@ -19,7 +20,9 @@ export function updateSignUpForm (fieldId, fieldValue) {
 export function initializeSignUpForm () {
   return {
     type: ACTIONS_TYPES.FORM_SIGNUP_INITIALIZE,
-    payload: null
+    payload: {
+      prefilledValues: PREFILLED_VALUES_SIGN_UP
+    }
   }
 }
 

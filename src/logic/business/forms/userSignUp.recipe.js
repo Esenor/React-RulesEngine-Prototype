@@ -75,11 +75,11 @@ module.exports.get = () => {
         defaultValue: '',
         errors: [],
         metaData: {
-          category: 'contact'
-        },
-        validator: {
-          regex: /^([0-9]+)$/,
-          message: 'You must have to type a "Phone number"'
+          category: 'contact',
+          validator: {
+            regex: /^([0-9]+)$/,
+            message: 'You must have to type a "Phone number"'
+          }
         }
       },
       email: {
@@ -90,11 +90,11 @@ module.exports.get = () => {
         defaultValue: '',
         errors: [],
         metaData: {
-          category: 'contact'
-        },
-        validator: {
-          regex: /^([w.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/,
-          message: 'You must have to type an "Email"'
+          category: 'contact',
+          validator: {
+            regex: /^([w.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/,
+            message: 'You must have to type an "Email"'
+          }
         }
       },
       emailValidate: {
@@ -105,11 +105,11 @@ module.exports.get = () => {
         defaultValue: '',
         errors: [],
         metaData: {
-          category: 'contact'
-        },
-        validator: {
-          regex: /^([w.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/,
-          message: 'You must have to type an "Email"'
+          category: 'contact',
+          validator: {
+            regex: /^([w.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/,
+            message: 'You must have to type an "Email"'
+          }
         }
       },
       firstName: {
@@ -120,11 +120,11 @@ module.exports.get = () => {
         defaultValue: '',
         errors: [],
         metaData: {
-          category: 'personal'
-        },
-        validator: {
-          regex: /^[\D\s]+$/,
-          message: 'You must have to type a "Name"'
+          category: 'personal',
+          validator: {
+            regex: /^[\D\s]+$/,
+            message: 'You must have to type a "Name"'
+          }
         }
       },
       lastName: {
@@ -135,11 +135,11 @@ module.exports.get = () => {
         defaultValue: '',
         errors: [],
         metaData: {
-          category: 'personal'
-        },
-        validator: {
-          regex: /^[\D\s]+$/,
-          message: 'You must have to type a "Last Name"'
+          category: 'personal',
+          validator: {
+            regex: /^[\D\s]+$/,
+            message: 'You must have to type a "Last Name"'
+          }
         }
       },
       socialReason: {
@@ -150,11 +150,11 @@ module.exports.get = () => {
         defaultValue: '',
         errors: [],
         metaData: {
-          category: 'personal'
-        },
-        validator: {
-          regex: /^[^]+$/,
-          message: 'You must have to type a "Social Reason"'
+          category: 'personal',
+          validator: {
+            regex: /^[^]+$/,
+            message: 'You must have to type a "Social Reason"'
+          }
         }
       }
     }

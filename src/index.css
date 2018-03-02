@@ -33,5 +33,5 @@ button {
   padding: 10px 30px;
 }
 :root {
-  --errorColor: red;
+  --errorColor: coral;
 }
