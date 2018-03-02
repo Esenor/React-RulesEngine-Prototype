@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { userSignupForm } from '../../logic/business/forms/userSignup.form'
-import { formAdapterLogicToDisplay } from '../../logic/common/formAdapter'
 import applicationDisplay from '../../logic/display/applicationDisplay'
-import { getFormErrors, getFormValues } from '../../logic/common/formHelper'
-import { cloneDeep } from 'lodash'
+import { getFormErrors } from '../../logic/common/formHelper'
 
 class Application extends Component {
   constructor (props) {
@@ -11,53 +8,24 @@ class Application extends Component {
     // Bind methods
     this.updateForm = this.updateForm.bind(this)
     this.finishForm = this.finishForm.bind(this)
-    // Get initial display form
-    let initialDisplayForm = formAdapterLogicToDisplay(userSignupForm.getState({}).getDataObject())
-    // Get initial form values
-    let userParamsForm = getFormValues(initialDisplayForm)
-    // Set initial state
-    this.state = {
-      formRecipe: initialDisplayForm,
-      formValues: userParamsForm,
-      formRecipeHistory: [initialDisplayForm],
-      formValuesHistory: [userParamsForm],
-      result: {}
-    }
-    console.log(this.state)
+    this.props.initializeSignUpForm()
+    console.log(this.props)
   }
 
   updateForm (event) {
-    // Update the state with the event field value
-    const newState = cloneDeep(this.state)
-    let formValues = Object.assign({}, newState.formValues, { [event.target.id]: event.target.value })
-    // Get new display form state
-    let displayForm = formAdapterLogicToDisplay(userSignupForm.getState(formValues).getDataObject())
-    // Get cleaned form values
-    let cleanedFormValues = getFormValues(displayForm)
-    // update history
-    let formRecipeHistory = newState.formRecipeHistory
-    formRecipeHistory.push(displayForm)
-    let formValuesHistory = newState.formValuesHistory
-    formValuesHistory.push(cleanedFormValues)
-    // Update state with new form state and cleaned form values
-    this.setState({
-      formRecipe: displayForm,
-      formValues: cleanedFormValues,
-      formRecipeHistory: formRecipeHistory,
-      formValuesHistory: formValuesHistory,
-      result: {}
-    })
-    console.log(newState)
+    this.props.updateSignUpForm(event.target.id, event.target.value)
+    console.log(this.props)
   }
 
   finishForm (event) {
     event.preventDefault()
-    this.setState({
-      result: {
-        values: this.state.formValues,
-        errors: getFormErrors(this.state.formRecipe)
-      }
-    })
+    let formErrors = getFormErrors(this.props.formRecipe)
+    if (formErrors.length > 0) {
+      window.alert(JSON.stringify(formErrors, null, 2))
+    } else {
+      this.props.setResultAsync(this.props.formValues)
+    }
+    console.log(this.props)
   }
 
   render () {
@@ -66,11 +34,11 @@ class Application extends Component {
       <React.Fragment>
         <article className="App">
           <form>
-            {applicationDisplay.get(this).formDOMized(this.state.formRecipe) }
-            <button onClick={this.finishForm}>Send form</button>
+            {applicationDisplay.get(this).formDOMized(this.props.formRecipe) }
+            <button onClick={this.finishForm}>Send form async (500ms)</button>
           </form>
         </article>
-        <article><pre>{JSON.stringify(this.state.result, null, 2)}</pre></article>
+        <article><pre>{JSON.stringify(this.props.result, null, 2)}</pre></article>
       </React.Fragment>
     )
   }

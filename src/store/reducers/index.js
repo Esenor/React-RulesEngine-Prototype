@@ -1,40 +1,66 @@
+import { cloneDeep } from 'lodash'
 import initialState from '../initialState.json'
 import { ACTIONS_TYPES } from '../'
+import { userSignupForm } from '../../logic/business/forms/userSignup.form'
+import { formAdapterLogicToDisplay } from '../../logic/common/formAdapter'
+import { getFormValues } from '../../logic/common/formHelper'
 
 /**
  *
  */
 export default function (state = initialState, action) {
   switch (action.type) {
-    case ACTIONS_TYPES.MESSAGE_INFO_UPDATE:
-      return updateMessageInfo(state, action)
+    case ACTIONS_TYPES.FORM_SIGNUP_INITIALIZE:
+      return initializeSignUpForm(state, action)
+    case ACTIONS_TYPES.FORM_SIGNUP_UPDATE:
+      return updateSignUpForm(state, action)
+    case ACTIONS_TYPES.FORM_SIGNUP_RESULT:
+      return resultSignUpForm(state, action)
     default:
       return state
   }
 }
 
-/**
- *
- * @param {*} state
- * @param {*} difference
- */
-function updateState (state, difference) {
-  return Object.assign({}, state, difference)
+function resultSignUpForm (state, action) {
+  const newState = cloneDeep(state)
+  return Object.assign({}, newState, {
+    result: action.payload.result
+  })
 }
 
-/**
- *
- * @param {*} state
- * @param {*} action
- */
-function updateMessageInfo (state, action) {
-  let difference = {
-    message: {
-      info: action.payload.message
-    }
-  }
+function initializeSignUpForm (state, action) {
+  const newState = cloneDeep(state)
+  let initialDisplayForm = formAdapterLogicToDisplay(userSignupForm.getState({}).getDataObject())
+  // Get initial form values
+  let userParamsForm = getFormValues(initialDisplayForm)
+  //
+  return Object.assign({}, newState, {
+    formRecipe: initialDisplayForm,
+    formValues: userParamsForm,
+    formRecipeHistory: [initialDisplayForm],
+    formValuesHistory: [userParamsForm]
+  })
+}
 
-  let nexState = updateState(state, difference)
-
-  return nexState
+function updateSignUpForm (state, action) {
+  // Update the state with the event field value
+  let newState = cloneDeep(state)
+  let formValues = Object.assign({}, newState.formValues, action.payload.field)
+  // Get new display form state
+  let displayForm = formAdapterLogicToDisplay(userSignupForm.getState(formValues).getDataObject())
+  // Get cleaned form values
+  let cleanedFormValues = getFormValues(displayForm)
+  // update history
+  let formRecipeHistory = newState.formRecipeHistory
+  formRecipeHistory.push(displayForm)
+  let formValuesHistory = newState.formValuesHistory
+  formValuesHistory.push(cleanedFormValues)
+  // Update state with new form state and cleaned form values
+  //
+  return Object.assign({}, newState, {
+    formRecipe: displayForm,
+    formValues: cleanedFormValues,
+    formRecipeHistory: formRecipeHistory,
+    formValuesHistory: formValuesHistory
+  })
 }

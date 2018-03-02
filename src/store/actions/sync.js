@@ -4,11 +4,33 @@ import { ACTIONS_TYPES } from '../index'
  *
  * @param {*} message
  */
-export function setMessageInfo (message = '') {
+export function updateSignUpForm (fieldId, fieldValue) {
   return {
-    type: ACTIONS_TYPES.MESSAGE_INFO_UPDATE,
+    type: ACTIONS_TYPES.FORM_SIGNUP_UPDATE,
     payload: {
-      message: message
+      field: { [fieldId]: fieldValue }
+    }
+  }
+}
+
+/**
+ *
+ */
+export function initializeSignUpForm () {
+  return {
+    type: ACTIONS_TYPES.FORM_SIGNUP_INITIALIZE,
+    payload: null
+  }
+}
+
+/**
+ *
+ */
+export function resultSignUpForm (result) {
+  return {
+    type: ACTIONS_TYPES.FORM_SIGNUP_RESULT,
+    payload: {
+      result: result
     }
   }
 }

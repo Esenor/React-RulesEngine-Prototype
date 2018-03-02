@@ -1,6 +1,7 @@
 {
-  "appName": "",
-  "message": {
-    "info": ""
-  }
+  "formRecipe": [],
+  "formValues": {},
+  "formRecipeHistory": [],
+  "formValuesHistory": [],
+  "result": {}
 }

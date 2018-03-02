@@ -1,12 +1,13 @@
-import { setMessageInfo } from './sync'
+import { resultSignUpForm } from './sync'
 
 /**
  *
+ * @param {*} formResult
  */
-export function getRandomQuote () {
+export function setFormResultAsync (formResult) {
   return async function (dispatch) {
     setTimeout(() => {
-      dispatch(setMessageInfo('Ready to use!'))
-    }, 1500)
+      dispatch(resultSignUpForm(formResult))
+    }, 500)
   }
 }

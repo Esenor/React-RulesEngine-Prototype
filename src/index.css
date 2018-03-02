@@ -7,10 +7,10 @@ ul {
   margin: 0px;
 }
 .error {
-  color: red;
+  color: var(--errorColor);
 }
 .error_field {
-  border: 1px solid red;
+  border: 1px solid var(--errorColor);
 }
 input, select {
   width: 100%;
@@ -27,4 +27,11 @@ form>div {
 article {
   width: 50%;
   display: inline-block;
+}
+button {
+  margin: 50px 0px;
+  padding: 10px 30px;
+}
+:root {
+  --errorColor: red;
 }

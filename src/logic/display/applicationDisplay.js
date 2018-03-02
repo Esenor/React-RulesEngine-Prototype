@@ -1,6 +1,7 @@
 import React from 'react'
-import { formAdapterDisplayCategory } from '../common/formAdapter'
+import { formAdapterDisplayCategory } from '../common/formHelper'
 import { byWeight } from '../common/common'
+import { FORM as humanizedFormMesage } from '../business/humanize/messages'
 
 export default {
   get (that) {
@@ -29,7 +30,7 @@ export default {
       /**
        *
        */
-      formDOMized: (displayFormState) => {
+      formDOMized: (displayFormState = []) => {
         //
         const METADATA_CATEGORY_ACCOUNT = 'account'
         const METADATA_CATEGORY_CONTACT = 'contact'
@@ -44,7 +45,7 @@ export default {
             { (accountFormCategory.length > 0)
               ? (
                 <section>
-                  <h1>Account</h1>
+                  <h1>{ humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.ACCOUNT }</h1>
                   {this.get(that).formCategoryDOMized(accountFormCategory.sort(byWeight)) }
                 </section>
               )
@@ -52,7 +53,7 @@ export default {
             { (personalFormCategory.length > 0)
               ? (
                 <section>
-                  <h1>Personal</h1>
+                  <h1>{ humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.PERSONAL }</h1>
                   {this.get(that).formCategoryDOMized(personalFormCategory.sort(byWeight)) }
                 </section>
               )
@@ -60,7 +61,7 @@ export default {
             { (contactFormCategory.length > 0)
               ? (
                 <section>
-                  <h1>Contact</h1>
+                  <h1>{ humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.CONTACT }</h1>
                   {this.get(that).formCategoryDOMized(contactFormCategory.sort(byWeight)) }
                 </section>
               )

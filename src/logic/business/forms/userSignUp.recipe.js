@@ -79,7 +79,7 @@ module.exports.get = () => {
         },
         validator: {
           regex: /^([0-9]+)$/,
-          message: 'You must have to type an "Email"'
+          message: 'You must have to type a "Phone number"'
         }
       },
       email: {

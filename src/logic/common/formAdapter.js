@@ -18,13 +18,3 @@ export function formAdapterLogicToDisplay (formLogicState) {
     return accumulator
   }, [])
 }
-
-export function formAdapterDisplayCategory (formDisplayState, categoryType) {
-  return formDisplayState.reduce((accumulator, fieldDisplay) => {
-    if (fieldDisplay.metaData.category === categoryType) {
-      accumulator.push(fieldDisplay)
-    }
-    //
-    return accumulator
-  }, [])
-}
