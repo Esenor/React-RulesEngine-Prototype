@@ -30,6 +30,21 @@ export default {
       /**
        *
        */
+      categoryDOMized: (categoryFields, categoryTitle) => {
+        if (categoryFields.length > 0) {
+          return (
+            <section>
+              <h1>{categoryTitle}</h1>
+              {this.get(that).fieldsDOMized(categoryFields.sort(byWeight))}
+            </section>
+          )
+        } else {
+          return null
+        }
+      },
+      /**
+       *
+       */
       formDOMized: (displayFormState = []) => {
         //
         const METADATA_CATEGORY_ACCOUNT = 'account'
@@ -42,37 +57,16 @@ export default {
         //
         return (
           <React.Fragment>
-            { (accountFormCategory.length > 0)
-              ? (
-                <section>
-                  <h1>{ humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.ACCOUNT }</h1>
-                  {this.get(that).formCategoryDOMized(accountFormCategory.sort(byWeight)) }
-                </section>
-              )
-              : ''}
-            { (personalFormCategory.length > 0)
-              ? (
-                <section>
-                  <h1>{ humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.PERSONAL }</h1>
-                  {this.get(that).formCategoryDOMized(personalFormCategory.sort(byWeight)) }
-                </section>
-              )
-              : ''}
-            { (contactFormCategory.length > 0)
-              ? (
-                <section>
-                  <h1>{ humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.CONTACT }</h1>
-                  {this.get(that).formCategoryDOMized(contactFormCategory.sort(byWeight)) }
-                </section>
-              )
-              : ''}
+            {this.get(that).categoryDOMized(accountFormCategory.sort(byWeight), humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.ACCOUNT)}
+            {this.get(that).categoryDOMized(personalFormCategory.sort(byWeight), humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.PERSONAL)}
+            {this.get(that).categoryDOMized(contactFormCategory.sort(byWeight), humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.CONTACT)}
           </React.Fragment>
         )
       },
       /**
        *
        */
-      formCategoryDOMized: (sortedFields) => {
+      fieldsDOMized: (sortedFields) => {
         return sortedFields.map((field) => {
           //
           switch (field.type) {
