@@ -1,7 +1,8 @@
 import React from 'react'
 import { formAdapterDisplayCategory } from '../common/formHelper'
 import { byWeight } from '../common/common'
-import { FORM as humanizedFormMesage } from '../business/humanize/messages'
+import humanizedFormMesage from '../business/humanize/messages'
+import lodash from 'lodash'
 
 export default {
   get (that) {
@@ -20,7 +21,7 @@ export default {
       errorDOMized: (field) => {
         if (field.errors.length > 0) {
           let errorsDOMized = field.errors.map((error, indice) => {
-            return (<li className="error" key={indice}>{error}</li>)
+            return (<li className="error" key={indice}>{lodash.get(humanizedFormMesage, error, error)}</li>)
           })
           return (<ul>{errorsDOMized}</ul>)
         } else {
@@ -57,9 +58,9 @@ export default {
         //
         return (
           <React.Fragment>
-            {this.get(that).categoryDOMized(accountFormCategory.sort(byWeight), humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.ACCOUNT)}
-            {this.get(that).categoryDOMized(personalFormCategory.sort(byWeight), humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.PERSONAL)}
-            {this.get(that).categoryDOMized(contactFormCategory.sort(byWeight), humanizedFormMesage.SIGN_UP.CATEGORY.TITLE.CONTACT)}
+            {this.get(that).categoryDOMized(accountFormCategory.sort(byWeight), lodash.get(humanizedFormMesage, 'FORM.SIGN_UP.CATEGORY.TITLE.ACCOUNT', 'FORM.SIGN_UP.CATEGORY.TITLE.ACCOUNT'))}
+            {this.get(that).categoryDOMized(personalFormCategory.sort(byWeight), lodash.get(humanizedFormMesage, 'FORM.SIGN_UP.CATEGORY.TITLE.PERSONAL', 'FORM.SIGN_UP.CATEGORY.TITLE.PERSONAL'))}
+            {this.get(that).categoryDOMized(contactFormCategory.sort(byWeight), lodash.get(humanizedFormMesage, 'FORM.SIGN_UP.CATEGORY.TITLE.CONTACT', 'FORM.SIGN_UP.CATEGORY.TITLE.CONTACT'))}
           </React.Fragment>
         )
       },

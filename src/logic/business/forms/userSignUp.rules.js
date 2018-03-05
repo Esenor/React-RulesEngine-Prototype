@@ -1,5 +1,3 @@
-const humanizedMesage = require('../../business/humanize/messages')
-
 /**
  * Return the rules
  * @return {[object]}
@@ -35,7 +33,7 @@ module.exports.validateFieldWithThisValidator = (isolatedRecipe) => {
 
 module.exports.validateEmailAndEmailValidateFieldAreEqual = (isolatedRecipe) => {
   if (isolatedRecipe.fields.email.defaultValue !== isolatedRecipe.fields.emailValidate.defaultValue) {
-    isolatedRecipe.fields.emailValidate.errors.push(humanizedMesage.FORM.SIGN_UP.ERRORS.EMAIL_NOT_EQUAL_EMAIL_VALIDATE)
+    isolatedRecipe.fields.emailValidate.errors.push('FORM.SIGN_UP.ERRORS.EMAIL_NOT_EQUAL_EMAIL_VALIDATE')
   }
   return isolatedRecipe
 }
@@ -49,7 +47,7 @@ module.exports.selectFieldDefaultValueIsOneOfValues = (isolatedRecipe) => {
       if (typeof isolatedRecipe.fields[key].values.find((value) => {
         return isolatedRecipe.fields[key].defaultValue === value.id
       }) === 'undefined') {
-        isolatedRecipe.fields[key].errors.push(humanizedMesage.FORM.SIGN_UP.ERRORS.SELECTED_OPTION_NOT_EXIST)
+        isolatedRecipe.fields[key].errors.push('FORM.SIGN_UP.ERRORS.SELECTED_OPTION_NOT_EXIST')
       }
     }
   })
@@ -109,7 +107,7 @@ module.exports.overwrideCategoryPerCustomerType = (isolatedRecipe) => {
  */
 module.exports.onlyFrenchCanBeProfessional = (isolatedRecipe) => {
   if (isolatedRecipe.fields.country.defaultValue !== 'fr' && isolatedRecipe.fields.customerType.defaultValue === 'pro') {
-    isolatedRecipe.fields.customerType.errors.push(humanizedMesage.FORM.SIGN_UP.ERRORS.ONLY_FRENCH_CAN_BE_PROFESSIONAL)
+    isolatedRecipe.fields.customerType.errors.push('FORM.SIGN_UP.ERRORS.ONLY_FRENCH_CAN_BE_PROFESSIONAL')
   }
   return isolatedRecipe
 }
