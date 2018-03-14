@@ -1,8 +1,11 @@
 import React from 'react'
+import lodash from 'lodash'
 import { formAdapterDisplayCategory } from '../common/formHelper'
 import { byWeight } from '../common/common'
 import humanizedFormMesage from '../business/humanize/messages'
-import lodash from 'lodash'
+import CategoryTitle from '../../components/atomics/CategoryTitle'
+import TextField from '../../components/atomics/TextField'
+import SelectField from '../../components/atomics/SelectField'
 
 export default {
   get (that) {
@@ -35,7 +38,7 @@ export default {
         if (categoryFields.length > 0) {
           return (
             <section>
-              <h1>{categoryTitle}</h1>
+              <CategoryTitle>{categoryTitle}</CategoryTitle>
               {this.get(that).fieldsDOMized(categoryFields.sort(byWeight))}
             </section>
           )
@@ -75,7 +78,7 @@ export default {
               return (
                 <div key={ `wrapper_${field.id}` }>
                   <p>{field.label}</p>
-                  <input type="text" id={field.id} name={field.id} key={field.id} className={(field.errors.length > 0) ? 'error_field' : null} defaultValue={field.defaultValue} onChange={that.updateForm} />
+                  <TextField id={field.id} isOnError={(field.errors.length > 0)} defaultValue={field.defaultValue} onChange={that.updateForm} />
                   {this.get(that).errorDOMized(field)}
                 </div>
               )
@@ -83,9 +86,7 @@ export default {
               return (
                 <div key={ `wrapper_${field.id}` }>
                   <p>{field.label}</p>
-                  <select id={field.id} name={field.id} key={field.id} className={(field.errors.length > 0) ? 'error_field' : null} defaultValue={field.defaultValue} onChange={that.updateForm}>
-                    {this.get(that).selectOptionDOMized(field)}
-                  </select>
+                  <SelectField id={field.id} isOnError={(field.errors.length > 0)} defaultValue={field.defaultValue} values={field.values.sort(byWeight)} onChange={that.updateForm} />
                   {this.get(that).errorDOMized(field)}
                 </div >
               )
@@ -93,7 +94,7 @@ export default {
               return (
                 <div key={ `wrapper_${field.id}` }>
                   <p>{field.label}</p>
-                  <input type="text" id={field.id} name={field.id} key={field.id} className={(field.errors.length > 0) ? 'error_field' : null} defaultValue={field.defaultValue} onChange={that.updateForm} />
+                  <TextField id={field.id} isOnError={(field.errors.length > 0)} defaultValue={field.defaultValue} onChange={that.updateForm} />
                   {this.get(that).errorDOMized(field)}
                 </div>
               )

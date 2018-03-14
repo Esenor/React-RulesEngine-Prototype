@@ -5,6 +5,11 @@
 module.exports.get = () => {
   return {
     fields: {
+      /**
+       * ****************************
+       * ****************************
+       * Field customerType
+       */
       customerType: {
         label: 'Customer type',
         enable: true,
@@ -42,6 +47,11 @@ module.exports.get = () => {
           category: 'account'
         }
       },
+      /**
+       * ****************************
+       * ****************************
+       * Field country
+       */
       country: {
         label: 'Country',
         enable: true,
@@ -67,6 +77,11 @@ module.exports.get = () => {
           category: 'personal'
         }
       },
+      /**
+       * ****************************
+       * ****************************
+       * Field phone
+       */
       phone: {
         label: 'Phone number',
         enable: false,
@@ -82,6 +97,11 @@ module.exports.get = () => {
           }
         }
       },
+      /**
+       * ****************************
+       * ****************************
+       * Field email
+       */
       email: {
         label: 'Email',
         enable: true,
@@ -97,6 +117,11 @@ module.exports.get = () => {
           }
         }
       },
+      /**
+       * ****************************
+       * ****************************
+       * Field emailValidate
+       */
       emailValidate: {
         label: 'Validate email',
         enable: true,
@@ -112,6 +137,11 @@ module.exports.get = () => {
           }
         }
       },
+      /**
+       * ****************************
+       * ****************************
+       * Field firstName
+       */
       firstName: {
         label: 'Name',
         enable: true,
@@ -127,6 +157,11 @@ module.exports.get = () => {
           }
         }
       },
+      /**
+       * ****************************
+       * ****************************
+       * Field lastName
+       */
       lastName: {
         label: 'Last Name',
         enable: true,
@@ -142,6 +177,11 @@ module.exports.get = () => {
           }
         }
       },
+      /**
+       * ****************************
+       * ****************************
+       * Field socialReason
+       */
       socialReason: {
         label: 'Social Reason',
         enable: false,

@@ -3,5 +3,5 @@ export const PREFILLED_VALUES_SIGN_UP = {
   email: 'demo@efc.com',
   emailValidate: 'demo@efc.com',
   socialReason: 'E.F.C',
-  country: 'uk'
+  country: 'fr'
 }

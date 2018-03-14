@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import applicationDisplay from '../../logic/display/applicationDisplay'
 import { getFormErrors } from '../../logic/common/formHelper'
+import InputButton from '../atomics/InputButton'
+import DebugBox from '../atomics/DebugBox'
 
 class Application extends Component {
   constructor (props) {
@@ -32,13 +34,13 @@ class Application extends Component {
     //
     return (
       <React.Fragment>
-        <article className="App">
+        <div className="container">
           <form>
             {applicationDisplay.get(this).formDOMized(this.props.formRecipe) }
-            <button onClick={this.finishForm}>Send form async (500ms)</button>
+            <InputButton onClick={this.finishForm}>Send form async (500ms)</InputButton>
           </form>
-        </article>
-        <article><pre>{JSON.stringify(this.props.result, null, 2)}</pre></article>
+          <DebugBox data={this.props.result} />
+        </div>
       </React.Fragment>
     )
   }

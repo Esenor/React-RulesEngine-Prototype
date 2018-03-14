@@ -1,0 +1,81 @@
+:root {
+  --main_text: #333333;
+  --second_text: #FFFFFF;
+  --main_action: dodgerblue;
+  --main_error: red;
+}
+
+html, body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: var(--main_text);
+}
+
+.container {
+  display: flex;
+}
+
+form {
+  margin: 20px 40px;
+}
+
+section {
+  margin-bottom: 20px; 
+}
+
+pre::before {
+  content: 'Response';
+  margin-right: 5px; 
+}
+
+pre {
+  padding: 20px 20px;
+}
+
+header>h1 {
+  font-size: 20px;
+  margin: 0px;
+  color: var(--main_action);
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  color: var(--main_error);
+  font-size: 12px;
+  font-style: italic;
+  list-style: none;
+  margin-top: 5px;
+}
+
+p {
+  margin: 10px 0px 5px 0px;
+}
+
+button {
+  background: var(--main_action);
+  border: 1px solid var(--main_action);
+  color: var(--second_text);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error_field {
+  border: 1px solid var(--main_error);
+}
+
+input, select, button {
+  height: 40px;
+  padding: 2px 5px;
+}
+
+input {
+  width: 250px;
+}
+
+select, button {
+  width: 265px;
+}
