@@ -10,7 +10,8 @@ export default connect(
       formValues: state.formValues,
       formRecipeHistory: state.formRecipeHistory,
       formValuesHistory: state.formValuesHistory,
-      result: state.result
+      result: state.result,
+      pending: state.pending
     }
   },
   function mapDispatchToProps (dispatch) {

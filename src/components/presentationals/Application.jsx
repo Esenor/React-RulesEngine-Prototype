@@ -37,7 +37,7 @@ class Application extends Component {
         <div className="container">
           <form>
             {applicationDisplay.get(this).formDOMized(this.props.formRecipe) }
-            <InputButton onClick={this.finishForm}>Send form async (500ms)</InputButton>
+            <InputButton onClick={this.finishForm}>{(this.props.pending) ? 'Pending ...' : 'Send form async (500ms)'}</InputButton>
           </form>
           <DebugBox data={this.props.result} />
         </div>

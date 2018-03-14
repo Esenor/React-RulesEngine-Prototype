@@ -3,5 +3,6 @@
   "formValues": {},
   "formRecipeHistory": [],
   "formValuesHistory": [],
-  "result": {}
+  "result": {},
+  "pending": false
 }

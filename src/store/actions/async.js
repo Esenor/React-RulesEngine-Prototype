@@ -1,4 +1,4 @@
-import { resultSignUpForm } from './sync'
+import { resultSignUpForm, pendingSignUpForm } from './sync'
 
 /**
  *
@@ -6,6 +6,7 @@ import { resultSignUpForm } from './sync'
  */
 export function setFormResultAsync (formResult) {
   return async function (dispatch) {
+    dispatch(pendingSignUpForm())
     setTimeout(() => {
       dispatch(resultSignUpForm(formResult))
     }, 500)

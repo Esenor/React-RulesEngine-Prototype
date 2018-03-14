@@ -29,6 +29,18 @@ export function initializeSignUpForm () {
 /**
  *
  */
+export function pendingSignUpForm () {
+  return {
+    type: ACTIONS_TYPES.FORM_SIGNUP_PENDING,
+    payload: {
+      result: null
+    }
+  }
+}
+
+/**
+ *
+ */
 export function resultSignUpForm (result) {
   return {
     type: ACTIONS_TYPES.FORM_SIGNUP_RESULT,

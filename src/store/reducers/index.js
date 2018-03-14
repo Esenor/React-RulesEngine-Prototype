@@ -14,6 +14,8 @@ export default function (state = initialState, action) {
       return initializeSignUpForm(state, action)
     case ACTIONS_TYPES.FORM_SIGNUP_UPDATE:
       return updateSignUpForm(state, action)
+    case ACTIONS_TYPES.FORM_SIGNUP_PENDING:
+      return pendingSignUpForm(state, action)
     case ACTIONS_TYPES.FORM_SIGNUP_RESULT:
       return resultSignUpForm(state, action)
     default:
@@ -21,10 +23,18 @@ export default function (state = initialState, action) {
   }
 }
 
+function pendingSignUpForm (state, action) {
+  const newState = cloneDeep(state)
+  return Object.assign({}, newState, {
+    pending: true
+  })
+}
+
 function resultSignUpForm (state, action) {
   const newState = cloneDeep(state)
   return Object.assign({}, newState, {
-    result: action.payload.result
+    result: action.payload.result,
+    pending: false
   })
 }
 
