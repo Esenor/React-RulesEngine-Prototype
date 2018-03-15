@@ -6,13 +6,14 @@ import { resultSignUpForm, pendingSignUpForm, updateSignUpForm } from './sync'
  */
 export function setFormResultAsync (formResult) {
   return async function (dispatch) {
+    dispatch(resultSignUpForm(null))
     for (let i = 0; i <= 3; i++) {
       setTimeout(() => {
         dispatch(pendingSignUpForm(i))
+        if (i === 3) {
+          dispatch(resultSignUpForm(formResult))
+        }
       }, 700 * i)
-      if (i === 3) {
-        dispatch(resultSignUpForm(formResult))
-      }
     }
   }
 }

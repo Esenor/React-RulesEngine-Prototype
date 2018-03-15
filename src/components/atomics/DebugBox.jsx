@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import util from 'util'
 
 class DebugBox extends Component {
   render () {
     return (
       <React.Fragment>
         <pre>
-          {util.inspect(this.props.data, false, null)}
+          {JSON.stringify(this.props.data, 0, 2)}
         </pre>
       </React.Fragment>
     )

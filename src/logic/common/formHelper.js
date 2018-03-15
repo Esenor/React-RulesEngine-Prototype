@@ -1,3 +1,6 @@
+import lodash from 'lodash'
+import humanizedFormMesage from '../business/humanize/messages'
+
 /**
  *
  * @param {*} displayFormState
@@ -21,6 +24,13 @@ export function getFormErrors (displayFormState = []) {
     }
     return accumulator
   }, [])
+}
+
+export function humanizedFieldError (fieldErrors = []) {
+  let humanizedErrors = lodash.cloneDeep(fieldErrors)
+  return humanizedErrors.map((error) => {
+    return lodash.get(humanizedFormMesage, error, error)
+  })
 }
 
 /**

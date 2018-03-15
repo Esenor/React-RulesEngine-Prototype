@@ -1,36 +1,16 @@
 import React from 'react'
 import lodash from 'lodash'
-import { formAdapterDisplayCategory } from '../common/formHelper'
+import { formAdapterDisplayCategory, humanizedFieldError } from '../common/formHelper'
 import { byWeight } from '../common/common'
 import humanizedFormMesage from '../business/humanize/messages'
 import CategoryTitle from '../../components/atomics/CategoryTitle'
 import TextField from '../../components/atomics/TextField'
 import SelectField from '../../components/atomics/SelectField'
+import ErrorInfo from '../../components/atomics/ErrorInfo'
 
 export default {
   get (that) {
     return {
-      /**
-       *
-       */
-      selectOptionDOMized: (field) => {
-        return field.values.sort(byWeight).map((value) => {
-          return (<option key={value.id} value={value.id} >{value.label}</option>)
-        })
-      },
-      /**
-       *
-       */
-      errorDOMized: (field) => {
-        if (field.errors.length > 0) {
-          let errorsDOMized = field.errors.map((error, indice) => {
-            return (<li className="error" key={indice}>{lodash.get(humanizedFormMesage, error, error)}</li>)
-          })
-          return (<ul>{errorsDOMized}</ul>)
-        } else {
-          return null
-        }
-      },
       /**
        *
        */
@@ -79,7 +59,7 @@ export default {
                 <div key={ `wrapper_${field.id}` }>
                   <p>{field.label}</p>
                   <TextField id={field.id} isOnError={(field.errors.length > 0)} defaultValue={field.defaultValue} onChange={that.updateForm} />
-                  {this.get(that).errorDOMized(field)}
+                  {(field.errors.length > 0) ? (<ErrorInfo messages={humanizedFieldError(field.errors)}/>) : null}
                 </div>
               )
             case 'select':
@@ -87,7 +67,7 @@ export default {
                 <div key={ `wrapper_${field.id}` }>
                   <p>{field.label}</p>
                   <SelectField id={field.id} isOnError={(field.errors.length > 0)} defaultValue={field.defaultValue} values={field.values.sort(byWeight)} onChange={that.updateForm} />
-                  {this.get(that).errorDOMized(field)}
+                  {(field.errors.length > 0) ? (<ErrorInfo messages={humanizedFieldError(field.errors)}/>) : null}
                 </div >
               )
             default:
@@ -95,7 +75,7 @@ export default {
                 <div key={ `wrapper_${field.id}` }>
                   <p>{field.label}</p>
                   <TextField id={field.id} isOnError={(field.errors.length > 0)} defaultValue={field.defaultValue} onChange={that.updateForm} />
-                  {this.get(that).errorDOMized(field)}
+                  {(field.errors.length > 0) ? (<ErrorInfo messages={humanizedFieldError(field.errors)}/>) : null}
                 </div>
               )
           }
