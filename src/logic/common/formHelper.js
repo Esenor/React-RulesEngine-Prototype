@@ -26,6 +26,10 @@ export function getFormErrors (displayFormState = []) {
   }, [])
 }
 
+/**
+ *
+ * @param {*} fieldErrors
+ */
 export function humanizedFieldError (fieldErrors = []) {
   let humanizedErrors = lodash.cloneDeep(fieldErrors)
   return humanizedErrors.map((error) => {

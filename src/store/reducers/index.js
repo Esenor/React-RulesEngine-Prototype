@@ -18,6 +18,8 @@ export default function (state = initialState, action) {
       return pendingSignUpForm(state, action)
     case ACTIONS_TYPES.FORM_SIGNUP_RESULT:
       return resultSignUpForm(state, action)
+    case ACTIONS_TYPES.MODAL_CHANGE:
+      return modalChangeStatus(state, action)
     default:
       return state
   }
@@ -92,4 +94,18 @@ function updateSignUpForm (state, action) {
     formRecipeHistory: formRecipeHistory,
     formValuesHistory: formValuesHistory
   })
+}
+
+/**
+ *
+ * @param {*} state
+ * @param {*} action
+ */
+function modalChangeStatus (state, action) {
+  let newState = cloneDeep(state)
+  let newModalState = Object.assign({}, newState.display.modal, {
+    [action.payload.name]: action.payload.status
+  })
+  console.log(Object.assign({}, newState, { display: { modal: newModalState } }))
+  return Object.assign({}, newState, { display: { modal: newModalState } })
 }

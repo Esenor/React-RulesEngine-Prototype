@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import applicationDisplay from '../../logic/display/applicationDisplay'
 import { getFormErrors } from '../../logic/common/formHelper'
 import InputButton from '../atomics/InputButton'
-import DebugBox from '../atomics/DebugBox'
+import Modal from '../atomics/Modal'
 
 class Application extends Component {
   constructor (props) {
@@ -23,8 +23,9 @@ class Application extends Component {
     event.preventDefault()
     let formErrors = getFormErrors(this.props.formRecipe)
     if (formErrors.length > 0) {
-      window.alert(JSON.stringify(formErrors, null, 2))
+      this.props.modalChangeStatus('error', true)
     } else {
+      this.props.modalChangeStatus('error', false)
       this.props.setResultAsync(this.props.formValues)
     }
     console.log(this.props)
@@ -32,28 +33,35 @@ class Application extends Component {
 
   render () {
     //
-    const buttonLabelText = () => {
-      switch (this.props.pending) {
-        case 0:
-          return 'Fetch form ...'
-        case 1:
-          return 'Call server ...'
-        case 2:
-          return 'Fetch result ...'
-        default:
-          return 'Send form async (2800ms)'
-      }
+    let buttonClasseName = null
+    let buttonLabelText = 'Send form async (2800ms)'
+    //
+    switch (this.props.pending) {
+      case 0:
+        buttonLabelText = '(1/3) Fetch form ...'
+        buttonClasseName = 'buttonPending'
+        break
+      case 1:
+        buttonLabelText = '(2/3) Call server ...'
+        buttonClasseName = 'buttonPending'
+        break
+      case 2:
+        buttonLabelText = '(3/3) Fetch result ...'
+        buttonClasseName = 'buttonPending'
+        break
     }
+    //
+    let closeErrorModal = () => { this.props.modalChangeStatus('error', false) }
+    let closeSuccessModal = () => { this.props.modalChangeStatus('success', false) }
     //
     return (
       <React.Fragment>
-        <div className="container">
-          <form>
-            {applicationDisplay.get(this).formDOMized(this.props.formRecipe) }
-            <InputButton className={(this.props.pending !== 3) ? 'buttonPending' : null} onClick={this.finishForm}>{buttonLabelText(this.props.pending)}</InputButton>
-          </form>
-          <DebugBox data={this.props.result} />
-        </div>
+        <form>
+          {applicationDisplay.get(this).formDOMized(this.props.formRecipe) }
+          <InputButton className={buttonClasseName} onClick={this.finishForm}>{buttonLabelText}</InputButton>
+        </form>
+        <Modal key="Success" title="Success" data={this.props.result} display={this.props.modal.success} onClick={closeSuccessModal}/>
+        <Modal key="Errors" title="Errors" data={getFormErrors(this.props.formRecipe)} display={this.props.modal.error} onClick={closeErrorModal}/>
       </React.Fragment>
     )
   }

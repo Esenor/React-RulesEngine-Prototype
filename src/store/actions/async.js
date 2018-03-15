@@ -1,4 +1,4 @@
-import { resultSignUpForm, pendingSignUpForm, updateSignUpForm } from './sync'
+import { resultSignUpForm, pendingSignUpForm, updateSignUpForm, modalChangeStatus } from './sync'
 
 /**
  *
@@ -12,6 +12,7 @@ export function setFormResultAsync (formResult) {
         dispatch(pendingSignUpForm(i))
         if (i === 3) {
           dispatch(resultSignUpForm(formResult))
+          dispatch(modalChangeStatus('success', true))
         }
       }, 700 * i)
     }

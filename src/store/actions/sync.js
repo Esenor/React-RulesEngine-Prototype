@@ -49,3 +49,16 @@ export function resultSignUpForm (result) {
     }
   }
 }
+
+/**
+ *
+ */
+export function modalChangeStatus (name, status = false) {
+  return {
+    type: ACTIONS_TYPES.MODAL_CHANGE,
+    payload: {
+      name: name,
+      status: status
+    }
+  }
+}

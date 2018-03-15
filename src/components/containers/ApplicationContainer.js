@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Application from '../presentationals/Application'
-import { updateSignUpForm, initializeSignUpForm } from '../../store/actions/sync'
+import { updateSignUpForm, initializeSignUpForm, modalChangeStatus } from '../../store/actions/sync'
 import { setFormResultAsync } from '../../store/actions/async'
 // import { validateFormAsync } from '../../store/actions/async'
 
@@ -12,7 +12,8 @@ export default connect(
       formRecipeHistory: state.formRecipeHistory,
       formValuesHistory: state.formValuesHistory,
       result: state.result,
-      pending: state.pending
+      pending: state.pending,
+      modal: state.display.modal
     }
   },
   function mapDispatchToProps (dispatch) {
@@ -20,7 +21,8 @@ export default connect(
       updateSignUpForm: (fieldId, fieldValue) => dispatch(updateSignUpForm(fieldId, fieldValue)),
       // updateSignUpForm: (fieldId, fieldValue) => dispatch(validateFormAsync(fieldId, fieldValue)),
       initializeSignUpForm: () => dispatch(initializeSignUpForm()),
-      setResultAsync: (formValues) => dispatch(setFormResultAsync(formValues))
+      setResultAsync: (formValues) => dispatch(setFormResultAsync(formValues)),
+      modalChangeStatus: (name, status) => dispatch(modalChangeStatus(name, status))
     }
   }
 )(Application)

@@ -14,21 +14,6 @@ export default {
       /**
        *
        */
-      categoryDOMized: (categoryFields, categoryTitle) => {
-        if (categoryFields.length > 0) {
-          return (
-            <section>
-              <CategoryTitle>{categoryTitle}</CategoryTitle>
-              {this.get(that).fieldsDOMized(categoryFields.sort(byWeight))}
-            </section>
-          )
-        } else {
-          return null
-        }
-      },
-      /**
-       *
-       */
       formDOMized: (displayFormState = []) => {
         //
         const METADATA_CATEGORY_ACCOUNT = 'account'
@@ -46,6 +31,21 @@ export default {
             {this.get(that).categoryDOMized(contactFormCategory.sort(byWeight), lodash.get(humanizedFormMesage, 'FORM.SIGN_UP.CATEGORY.TITLE.CONTACT', 'FORM.SIGN_UP.CATEGORY.TITLE.CONTACT'))}
           </React.Fragment>
         )
+      },
+      /**
+       *
+       */
+      categoryDOMized: (categoryFields, categoryTitle) => {
+        if (categoryFields.length > 0) {
+          return (
+            <section>
+              <CategoryTitle>{categoryTitle}</CategoryTitle>
+              {this.get(that).fieldsDOMized(categoryFields.sort(byWeight))}
+            </section>
+          )
+        } else {
+          return null
+        }
       },
       /**
        *
