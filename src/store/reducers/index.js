@@ -23,21 +23,35 @@ export default function (state = initialState, action) {
   }
 }
 
+/**
+ *
+ * @param {*} state
+ * @param {*} action
+ */
 function pendingSignUpForm (state, action) {
   const newState = cloneDeep(state)
   return Object.assign({}, newState, {
-    pending: true
+    pending: action.payload.progress
   })
 }
 
+/**
+ *
+ * @param {*} state
+ * @param {*} action
+ */
 function resultSignUpForm (state, action) {
   const newState = cloneDeep(state)
   return Object.assign({}, newState, {
-    result: action.payload.result,
-    pending: false
+    result: action.payload.result
   })
 }
 
+/**
+ *
+ * @param {*} state
+ * @param {*} action
+ */
 function initializeSignUpForm (state, action) {
   const newState = cloneDeep(state)
   let initialDisplayForm = formAdapterLogicToDisplay(userSignupForm.getState(action.payload.prefilledValues).getDataObject())
@@ -52,6 +66,11 @@ function initializeSignUpForm (state, action) {
   })
 }
 
+/**
+ *
+ * @param {*} state
+ * @param {*} action
+ */
 function updateSignUpForm (state, action) {
   // Update the state with the event field value
   let newState = cloneDeep(state)

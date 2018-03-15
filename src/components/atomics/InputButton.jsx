@@ -4,7 +4,7 @@ class InputButton extends Component {
   render () {
     return (
       <React.Fragment>
-        <button onClick={this.props.onClick}>{this.props.children}</button>
+        <button onClick={this.props.onClick} className={this.props.className}>{this.props.children}</button>
       </React.Fragment>
     )
   }

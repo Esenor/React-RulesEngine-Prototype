@@ -2,6 +2,7 @@
   --main_text: #333333;
   --second_text: #FFFFFF;
   --main_action: dodgerblue;
+  --second_action: coral;
   --main_error: red;
 }
 
@@ -76,6 +77,12 @@ input {
   width: 250px;
 }
 
-select, button {
+select, button, progress {
   width: 265px;
+}
+
+.buttonPending {
+  background: var(--second_action);
+  border: 1px solid var(--second_action);
+  color: var(--second_text);
 }

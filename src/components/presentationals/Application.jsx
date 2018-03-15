@@ -32,12 +32,25 @@ class Application extends Component {
 
   render () {
     //
+    const buttonLabelText = () => {
+      switch (this.props.pending) {
+        case 0:
+          return 'Fetch form ...'
+        case 1:
+          return 'Call server ...'
+        case 2:
+          return 'Fetch result ...'
+        default:
+          return 'Send form async (2800ms)'
+      }
+    }
+    //
     return (
       <React.Fragment>
         <div className="container">
           <form>
             {applicationDisplay.get(this).formDOMized(this.props.formRecipe) }
-            <InputButton onClick={this.finishForm}>{(this.props.pending) ? 'Pending ...' : 'Send form async (500ms)'}</InputButton>
+            <InputButton className={(this.props.pending !== 3) ? 'buttonPending' : null} onClick={this.finishForm}>{buttonLabelText(this.props.pending)}</InputButton>
           </form>
           <DebugBox data={this.props.result} />
         </div>

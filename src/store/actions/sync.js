@@ -29,11 +29,11 @@ export function initializeSignUpForm () {
 /**
  *
  */
-export function pendingSignUpForm () {
+export function pendingSignUpForm (progress = 0) {
   return {
     type: ACTIONS_TYPES.FORM_SIGNUP_PENDING,
     payload: {
-      result: null
+      progress: progress
     }
   }
 }
