@@ -106,6 +106,5 @@ function modalChangeStatus (state, action) {
   let newModalState = Object.assign({}, newState.display.modal, {
     [action.payload.name]: action.payload.status
   })
-  console.log(Object.assign({}, newState, { display: { modal: newModalState } }))
   return Object.assign({}, newState, { display: { modal: newModalState } })
 }
