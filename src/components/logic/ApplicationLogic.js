@@ -20,7 +20,7 @@ const METADATA_CATEGORY_PERSONAL = 'personal'
  *
  * @param {*} displayFormState
  */
-export function formDOMized (displayFormState = []) {
+export function getDOMizedForm (displayFormState = []) {
   //
   this.categoryDOMized = categoryDOMized.bind(this)
   //
