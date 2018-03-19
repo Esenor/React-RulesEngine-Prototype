@@ -85,6 +85,8 @@ module.exports.assignFieldPerCustomerType = (isolatedRecipe) => {
       isolatedRecipe.fields.emailValidate.enable = false
       isolatedRecipe.fields.phone.enable = true
       break
+    default:
+      break
   }
   return isolatedRecipe
 }
@@ -97,6 +99,8 @@ module.exports.overwrideCategoryPerCustomerType = (isolatedRecipe) => {
     case 'pro':
       isolatedRecipe.fields.socialReason.metaData.category = 'contact'
       isolatedRecipe.fields.country.metaData.category = 'contact'
+      break
+    default:
       break
   }
   return isolatedRecipe

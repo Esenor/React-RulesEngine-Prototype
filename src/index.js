@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import './css/index.css'
 import ApplicationContainer from './components/containers/ApplicationContainer'
-import reducer from './store/reducers'
+import reducer from './store/reducers/reducer'
 
 let store = createStore(reducer, applyMiddleware(thunk))
 

@@ -1,52 +1,22 @@
 import { cloneDeep } from 'lodash'
-import initialState from '../initialState.json'
-import { ACTIONS_TYPES } from '../'
+import formSignUpState from '../states/formSignUp.state.json'
+import { ACTIONS_TYPES } from '../actionTypes'
 import { userSignupForm } from '../../domain/forms/userSignup.form'
-import { formAdapterDomainToDisplay } from '../../logic/common/formAdapter'
-import { getFormValues } from '../../logic/common/formHelper'
+import { formAdapterDomainToDisplay } from '../../common/domainFormAdapter'
+import { getFormValues } from '../../common/displayFormHelper'
 
 /**
  *
  */
-export default function (state = initialState, action) {
+export default function (state = formSignUpState, action) {
   switch (action.type) {
     case ACTIONS_TYPES.FORM_SIGNUP_INITIALIZE:
       return initializeSignUpForm(state, action)
     case ACTIONS_TYPES.FORM_SIGNUP_UPDATE:
       return updateSignUpForm(state, action)
-    case ACTIONS_TYPES.FORM_SIGNUP_PENDING:
-      return pendingSignUpForm(state, action)
-    case ACTIONS_TYPES.FORM_SIGNUP_RESULT:
-      return resultSignUpForm(state, action)
-    case ACTIONS_TYPES.MODAL_CHANGE:
-      return modalChangeStatus(state, action)
     default:
       return state
   }
-}
-
-/**
- *
- * @param {*} state
- * @param {*} action
- */
-function pendingSignUpForm (state, action) {
-  const newState = cloneDeep(state)
-  return Object.assign({}, newState, {
-    pending: action.payload.progress
-  })
-}
-
-/**
- *
- * @param {*} state
- * @param {*} action
- */
-function resultSignUpForm (state, action) {
-  const newState = cloneDeep(state)
-  return Object.assign({}, newState, {
-    result: action.payload.result
-  })
 }
 
 /**
@@ -94,17 +64,4 @@ function updateSignUpForm (state, action) {
     formRecipeHistory: formRecipeHistory,
     formValuesHistory: formValuesHistory
   })
-}
-
-/**
- *
- * @param {*} state
- * @param {*} action
- */
-function modalChangeStatus (state, action) {
-  let newState = cloneDeep(state)
-  let newModalState = Object.assign({}, newState.display.modal, {
-    [action.payload.name]: action.payload.status
-  })
-  return Object.assign({}, newState, { display: { modal: newModalState } })
 }

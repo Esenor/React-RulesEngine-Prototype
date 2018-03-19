@@ -7,13 +7,13 @@ import { setFormResultAsync } from '../../store/actions/async'
 export default connect(
   function mapStateToProps (state) {
     return {
-      formRecipe: state.formRecipe,
-      formValues: state.formValues,
-      formRecipeHistory: state.formRecipeHistory,
-      formValuesHistory: state.formValuesHistory,
-      result: state.result,
-      pending: state.pending,
-      modal: state.display.modal
+      formRecipe: state.signUpForm.formRecipe,
+      formValues: state.signUpForm.formValues,
+      formRecipeHistory: state.signUpForm.formRecipeHistory,
+      formValuesHistory: state.signUpForm.formValuesHistory,
+      result: state.signUpStatus.result,
+      pending: state.signUpStatus.pending,
+      modal: state.signUpModal
     }
   },
   function mapDispatchToProps (dispatch) {

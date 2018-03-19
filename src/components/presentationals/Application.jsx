@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { getDOMizedForm, updateForm, finishForm, closeErrorModal, closeSuccessModal, getSubmitButtonStatusParams } from '../logic/ApplicationLogic'
-import { getFormErrors } from '../../logic/common/formHelper'
+import { getFormErrors } from '../../common/displayFormHelper'
 import InputButton from '../atomics/InputButton'
 import Modal from '../atomics/Modal'
 

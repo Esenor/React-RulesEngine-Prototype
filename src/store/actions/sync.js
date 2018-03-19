@@ -1,4 +1,4 @@
-import { ACTIONS_TYPES } from '../index'
+import { ACTIONS_TYPES } from '../actionTypes'
 
 /**
  *
