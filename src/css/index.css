@@ -102,7 +102,6 @@ select, button, progress {
 .modal-button {
   width: 100px;
   float: right;
-  display: inline-block;
 }
 
 .modal-footer {
