@@ -27,8 +27,11 @@ class Application extends Component {
   render () {
     return (
       <React.Fragment>
-        <PreSignUp className={(this.state.formEnable) ? 'hide' : null} onClick={this.openForm} />
-        <SignUpFormContainer className={(this.state.formEnable) ? null : 'hide'} onReturn={this.closeForm} />
+        {(this.state.formEnable) ? (
+          <SignUpFormContainer onReturn={this.closeForm} />
+        ) : (
+          <PreSignUp onClick={this.openForm} />
+        )}
       </React.Fragment>
     )
   }
