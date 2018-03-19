@@ -1,8 +1,8 @@
 import { cloneDeep } from 'lodash'
 import initialState from '../initialState.json'
 import { ACTIONS_TYPES } from '../'
-import { userSignupForm } from '../../logic/business/forms/userSignup.form'
-import { formAdapterLogicToDisplay } from '../../logic/common/formAdapter'
+import { userSignupForm } from '../../domain/forms/userSignup.form'
+import { formAdapterDomainToDisplay } from '../../logic/common/formAdapter'
 import { getFormValues } from '../../logic/common/formHelper'
 
 /**
@@ -56,7 +56,7 @@ function resultSignUpForm (state, action) {
  */
 function initializeSignUpForm (state, action) {
   const newState = cloneDeep(state)
-  let initialDisplayForm = formAdapterLogicToDisplay(userSignupForm.getState(action.payload.prefilledValues).getDataObject())
+  let initialDisplayForm = formAdapterDomainToDisplay(userSignupForm.getState(action.payload.prefilledValues).getDataObject())
   // Get initial form values
   let userParamsForm = getFormValues(initialDisplayForm)
   //
@@ -78,7 +78,7 @@ function updateSignUpForm (state, action) {
   let newState = cloneDeep(state)
   let formValues = Object.assign({}, newState.formValues, action.payload.field)
   // Get new display form state
-  let displayForm = formAdapterLogicToDisplay(userSignupForm.getState(formValues).getDataObject())
+  let displayForm = formAdapterDomainToDisplay(userSignupForm.getState(formValues).getDataObject())
   // Get cleaned form values
   let cleanedFormValues = getFormValues(displayForm)
   // update history

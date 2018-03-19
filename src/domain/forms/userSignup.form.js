@@ -1,4 +1,4 @@
-const rulesEngine = require('../../common/rulesEngine')
+const rulesEngine = require('../../logic/common/rulesEngine')
 const formRecipe = require('./userSignUp.recipe')
 const formRules = require('./userSignUp.rules')
 

@@ -2,7 +2,6 @@ import React from 'react'
 import lodash from 'lodash'
 import { formAdapterDisplayCategory, humanizedFieldError, getFormErrors } from '../../logic/common/formHelper'
 import { byWeight } from '../../logic/common/common'
-import humanizedFormMesage from '../../logic/business/humanize/messages'
 import CategoryTitle from '../atomics/CategoryTitle'
 import TextField from '../atomics/TextField'
 import SelectField from '../atomics/SelectField'
@@ -30,9 +29,9 @@ export function getDOMizedForm (displayFormState = []) {
   //
   return (
     <React.Fragment>
-      {this.categoryDOMized(accountFormCategory.sort(byWeight), lodash.get(humanizedFormMesage, 'FORM.SIGN_UP.CATEGORY.TITLE.ACCOUNT', 'FORM.SIGN_UP.CATEGORY.TITLE.ACCOUNT'))}
-      {this.categoryDOMized(personalFormCategory.sort(byWeight), lodash.get(humanizedFormMesage, 'FORM.SIGN_UP.CATEGORY.TITLE.PERSONAL', 'FORM.SIGN_UP.CATEGORY.TITLE.PERSONAL'))}
-      {this.categoryDOMized(contactFormCategory.sort(byWeight), lodash.get(humanizedFormMesage, 'FORM.SIGN_UP.CATEGORY.TITLE.CONTACT', 'FORM.SIGN_UP.CATEGORY.TITLE.CONTACT'))}
+      {this.categoryDOMized(accountFormCategory.sort(byWeight), 'ACCOUNT')}
+      {this.categoryDOMized(personalFormCategory.sort(byWeight), 'PERSONAL')}
+      {this.categoryDOMized(contactFormCategory.sort(byWeight), 'CONTACT')}
     </React.Fragment>
   )
 }

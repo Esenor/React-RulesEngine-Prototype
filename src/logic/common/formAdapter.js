@@ -1,20 +1,20 @@
-export function formAdapterLogicToDisplay (formLogicState) {
-  return Object.keys(formLogicState.fields).reduce((accumulator, fieldId) => {
-    let fieldLogic = formLogicState.fields[fieldId]
+export function formAdapterDomainToDisplay (formDomainState) {
+  return Object.keys(formDomainState.fields).reduce((translatedForm, fieldId) => {
+    let fieldDomain = formDomainState.fields[fieldId]
     // Adapter
     let fieldDisplay = {
       id: fieldId,
-      label: fieldLogic.label,
-      weight: fieldLogic.weight,
-      type: fieldLogic.type,
-      defaultValue: fieldLogic.defaultValue,
-      values: fieldLogic.values,
-      errors: fieldLogic.errors,
-      metaData: fieldLogic.metaData
+      label: fieldDomain.label,
+      weight: fieldDomain.weight,
+      type: fieldDomain.type,
+      defaultValue: fieldDomain.defaultValue,
+      values: fieldDomain.values,
+      errors: fieldDomain.errors,
+      metaData: fieldDomain.metaData
     }
     //
-    accumulator.push(fieldDisplay)
+    translatedForm.push(fieldDisplay)
     //
-    return accumulator
+    return translatedForm
   }, [])
 }
