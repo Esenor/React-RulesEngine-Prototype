@@ -3,6 +3,7 @@
   --second_text: #FFFFFF;
   --main_action: dodgerblue;
   --second_action: coral;
+  --alt_action: #333333;
   --main_error: red;
 }
 
@@ -12,12 +13,12 @@ html, body {
   color: var(--main_text);
 }
 
-form {
+article {
   margin: 20px 40px;
 }
 
 section {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 pre {
@@ -54,6 +55,19 @@ button {
   color: var(--second_text);
   font-weight: bold;
   cursor: pointer;
+  margin: 5px 0px;
+  transition: all ease 100ms;
+}
+
+button:hover {
+  box-shadow: 0px 5px 10px 0px #888888;
+  transition: all ease 100ms;
+}
+
+.button-alt {
+  background: #FFFFFF;
+  border: 1px solid var(--alt_action);
+  color: var(--main_text);
 }
 
 .error_field {
@@ -63,6 +77,10 @@ button {
 input, select, button {
   height: 40px;
   padding: 2px 5px;
+
+  animation-name: bounceIn;
+  animation-duration: 250ms;
+  animation-timing-function: ease-in-out;
 }
 
 input {
@@ -106,4 +124,22 @@ select, button, progress {
 
 .modal-footer {
   height: 40px;
+}
+
+.hide {
+  display: none;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
 }

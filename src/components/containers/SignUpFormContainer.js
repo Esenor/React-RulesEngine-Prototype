@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Application from '../presentationals/Application'
+import SignUpForm from '../presentationals/SignUpForm'
 import { updateSignUpForm, initializeSignUpForm, modalChangeStatus } from '../../store/actions/sync'
 import { setFormResultAsync } from '../../store/actions/async'
 // import { validateFormAsync } from '../../store/actions/async'
@@ -25,4 +25,4 @@ export default connect(
       modalChangeStatus: (name, status) => dispatch(modalChangeStatus(name, status))
     }
   }
-)(Application)
+)(SignUpForm)
