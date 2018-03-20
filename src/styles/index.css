@@ -59,11 +59,6 @@ button {
   transition: all ease 100ms;
 }
 
-button:active {
-  box-shadow: 0px 0px 0px 0px #FFFFFF;
-  transform: translateY(2px);  
-}
-
 button:hover {
   box-shadow: 0px 5px 10px 0px #888888;
   transform: translateY(-2px);
@@ -87,7 +82,15 @@ input, select, button {
 
 input {
   width: 250px;
+  transition: all ease 100ms;
 }
+
+input:hover, input:focus, select:hover, select:focus, button:focus {
+  box-shadow: 0px 5px 10px 0px #888888;
+  transform: translateY(-2px);
+  transition: all ease 100ms;
+}
+
 
 select, button, progress {
   width: 265px;
