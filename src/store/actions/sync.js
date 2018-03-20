@@ -1,8 +1,9 @@
 import { ACTIONS_TYPES } from '../actionTypes'
 
 /**
- *
- * @param {*} message
+ * Return a updateSignUpForm action
+ * @param {string} fieldId
+ * @param {mixed} fieldValue
  */
 export function updateSignUpForm (fieldId, fieldValue) {
   return {
@@ -14,7 +15,7 @@ export function updateSignUpForm (fieldId, fieldValue) {
 }
 
 /**
- *
+ * Return a initializeSignUpForm action
  */
 export function initializeSignUpForm () {
   return {
@@ -33,7 +34,7 @@ export function initializeSignUpForm () {
 }
 
 /**
- *
+ * Return a pendingSignUpForm action
  */
 export function pendingSignUpForm (progress = 0) {
   return {
@@ -45,7 +46,7 @@ export function pendingSignUpForm (progress = 0) {
 }
 
 /**
- *
+ * Return a resultSignUpForm action
  */
 export function resultSignUpForm (result) {
   return {
@@ -57,7 +58,7 @@ export function resultSignUpForm (result) {
 }
 
 /**
- *
+ * return a modalChangeStatus action
  */
 export function modalChangeStatus (name, status = false) {
   return {

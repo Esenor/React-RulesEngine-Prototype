@@ -15,8 +15,8 @@ const METADATA_CATEGORY_PERSONAL = 'personal'
 /* ********************************************************************** */
 
 /**
- *
- * @param {*} displayFormState
+ * Return a form in virtual DOM format
+ * @param {object} displayFormState
  */
 export function getDOMizedForm (displayFormState = []) {
   //
@@ -36,16 +36,16 @@ export function getDOMizedForm (displayFormState = []) {
 }
 
 /**
- *
- * @param {*} event
+ * Dispatch a update form event
+ * @param {object} event
  */
 export function updateForm (event) {
   this.props.updateSignUpForm(event.target.id, event.target.value)
 }
 
 /**
- *
- * @param {*} event
+ * Dispatch a finish form event
+ * @param {object} event
  */
 export function finishForm (event) {
   event.preventDefault()
@@ -59,22 +59,22 @@ export function finishForm (event) {
 }
 
 /**
- *
+ * Dispatch a close modal event for error modal
  */
 export function closeErrorModal () {
   this.props.modalChangeStatus('error', false)
 }
 
 /**
- *
+ * Dispatch a close modal event for success modal
  */
 export function closeSuccessModal () {
   this.props.modalChangeStatus('success', false)
 }
 
 /**
- *
- * @param {*} status
+ * Return the state of the submit button in fontion of the form status
+ * @param {object} status
  */
 export function getSubmitButtonStatusParams (status) {
   switch (status) {
@@ -106,9 +106,9 @@ export function getSubmitButtonStatusParams (status) {
 /* ********************************************************************** */
 
 /**
- *
- * @param {*} categoryField
- * @param {*} categoryTitle
+ * Return the categories in virtual DOM format
+ * @param {object} categoryField
+ * @param {object} categoryTitle
  */
 function categoryDOMized (categoryFields, categoryTitle) {
   //
@@ -127,8 +127,8 @@ function categoryDOMized (categoryFields, categoryTitle) {
 }
 
 /**
- *
- * @param {*} sortedFields
+ * Return the fields in a virtual DOM format
+ * @param {object} sortedFields
  */
 function fieldsDOMized (sortedFields) {
   return sortedFields.map((field) => {

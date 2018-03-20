@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+/**
+ * InputButton component
+ */
 class InputButton extends Component {
   render () {
     return (
@@ -8,6 +11,11 @@ class InputButton extends Component {
       </React.Fragment>
     )
   }
+}
+
+InputButton.defaultProps = {
+  onClick: () => {},
+  className: null
 }
 
 export default InputButton

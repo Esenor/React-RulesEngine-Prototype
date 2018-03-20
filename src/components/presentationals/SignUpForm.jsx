@@ -4,6 +4,9 @@ import { getFormErrors } from '../../common/displayFormHelper'
 import InputButton from '../atomics/InputButton'
 import Modal from '../atomics/Modal'
 
+/**
+ * SignUpForm component
+ */
 class SignUpForm extends Component {
   constructor (props) {
     super(props)

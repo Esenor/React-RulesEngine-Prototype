@@ -1,14 +1,14 @@
 import { cloneDeep } from 'lodash'
-import formSignUpState from '../states/formSignUp.state.json'
+import formSignUpState from '../states/formSignUp.state'
 import { ACTIONS_TYPES } from '../actionTypes'
 import { userSignupForm } from '../../domain/forms/userSignup.form'
 import { formAdapterDomainToDisplay } from '../../common/domainFormAdapter'
 import { getFormValues } from '../../common/displayFormHelper'
 
 /**
- *
+ * Return the reducer function
  */
-export default function (state = formSignUpState, action) {
+export default function (state = formSignUpState.getInitialState(), action) {
   switch (action.type) {
     case ACTIONS_TYPES.FORM_SIGNUP_INITIALIZE:
       return initializeSignUpForm(state, action)
@@ -20,9 +20,9 @@ export default function (state = formSignUpState, action) {
 }
 
 /**
- *
- * @param {*} state
- * @param {*} action
+ * Create the first state of the signup display form
+ * @param {object} state
+ * @param {object} action
  */
 function initializeSignUpForm (state, action) {
   const newState = cloneDeep(state)
@@ -39,15 +39,15 @@ function initializeSignUpForm (state, action) {
 }
 
 /**
- *
- * @param {*} state
- * @param {*} action
+ * Update the signup display form state
+ * @param {object} state
+ * @param {object} action
  */
 function updateSignUpForm (state, action) {
   // Update the state with the event field value
   let newState = cloneDeep(state)
   let formValues = Object.assign({}, newState.formValues, action.payload.field)
-  // Get new display form state
+  // Get new signup display form state
   let displayForm = formAdapterDomainToDisplay(userSignupForm.getState(formValues).getDataObject())
   // Get cleaned form values
   let cleanedFormValues = getFormValues(displayForm)

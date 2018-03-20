@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import InputButton from '../atomics/InputButton'
 
+/**
+ * PreSignUp component
+ */
 class PreSignUp extends Component {
   render () {
     return (

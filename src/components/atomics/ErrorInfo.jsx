@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+/**
+ * ErrorInfo component
+ */
 class ErrorInfo extends Component {
   render () {
     return (

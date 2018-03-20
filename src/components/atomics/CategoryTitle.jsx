@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+/**
+ * CategoryTitle component
+ */
 class CategoryTitle extends Component {
   render () {
     return (

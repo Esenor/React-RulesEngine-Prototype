@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+/**
+ * DebugBox component
+ */
 class DebugBox extends Component {
   render () {
     return (
@@ -10,6 +13,10 @@ class DebugBox extends Component {
       </React.Fragment>
     )
   }
+}
+
+DebugBox.defaultProps = {
+  data: {}
 }
 
 export default DebugBox

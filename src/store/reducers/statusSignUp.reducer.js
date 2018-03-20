@@ -1,11 +1,11 @@
 import { cloneDeep } from 'lodash'
-import statusSignUpState from '../states/statusSignUp.state.json'
+import statusSignUpState from '../states/statusSignUp.state'
 import { ACTIONS_TYPES } from '../actionTypes'
 
 /**
- *
+ * Return the reducer function
  */
-export default function (state = statusSignUpState, action) {
+export default function (state = statusSignUpState.getInitialState(), action) {
   switch (action.type) {
     case ACTIONS_TYPES.FORM_SIGNUP_PENDING:
       return pendingSignUpForm(state, action)
@@ -17,9 +17,9 @@ export default function (state = statusSignUpState, action) {
 }
 
 /**
- *
- * @param {*} state
- * @param {*} action
+ * Update the pending state in the state
+ * @param {object} state
+ * @param {object} action
  */
 function pendingSignUpForm (state, action) {
   const newState = cloneDeep(state)
@@ -29,9 +29,9 @@ function pendingSignUpForm (state, action) {
 }
 
 /**
- *
- * @param {*} state
- * @param {*} action
+ * Add the result of the display form in the state
+ * @param {object} state
+ * @param {object} action
  */
 function resultSignUpForm (state, action) {
   const newState = cloneDeep(state)

@@ -1,8 +1,8 @@
 import lodash from 'lodash'
 
 /**
- *
- * @param {*} displayFormState
+ * Return the input values of a display form
+ * @param {object} displayFormState
  */
 export function getFormValues (displayFormState = []) {
   return displayFormState.reduce((accumulator, fieldDisplay) => {
@@ -12,8 +12,8 @@ export function getFormValues (displayFormState = []) {
 }
 
 /**
- *
- * @param {*} displayFormState
+ * Return the erros of a display form
+ * @param {object} displayFormState
  */
 export function getFormErrors (displayFormState = []) {
   return displayFormState.reduce((accumulator, field) => {
@@ -27,8 +27,8 @@ export function getFormErrors (displayFormState = []) {
 }
 
 /**
- *
- * @param {*} fieldErrors
+ * Return the error of the display form in a simple string array
+ * @param {object} fieldErrors
  */
 export function humanizedFieldError (fieldErrors = []) {
   let humanizedErrors = lodash.cloneDeep(fieldErrors)
@@ -38,9 +38,9 @@ export function humanizedFieldError (fieldErrors = []) {
 }
 
 /**
- *
- * @param {*} displayFormState
- * @param {*} categoryType
+ * Return a map o the field who had the good category in the metadata
+ * @param {object} displayFormState
+ * @param {string} categoryType
  */
 export function formAdapterDisplayCategory (displayFormState = [], categoryType) {
   return displayFormState.reduce((accumulator, fieldDisplay) => {

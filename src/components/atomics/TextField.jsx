@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+/**
+ * TextField component
+ */
 class TextField extends Component {
   render () {
     return (

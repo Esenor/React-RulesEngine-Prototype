@@ -1,3 +1,6 @@
+/**
+ * Store actions types
+ */
 export const ACTIONS_TYPES = {
   FORM_SIGNUP_UPDATE: 'FORM_SIGNUP_UPDATE',
   FORM_SIGNUP_INITIALIZE: 'FORM_SIGNUP_INITIALIZE',

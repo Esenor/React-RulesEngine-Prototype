@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import DebugBox from './DebugBox'
 import InputButton from './InputButton'
 
+/**
+ * Modal component
+ */
 class Modal extends Component {
   render () {
     return (

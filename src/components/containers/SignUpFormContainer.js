@@ -2,9 +2,14 @@ import { connect } from 'react-redux'
 import SignUpForm from '../presentationals/SignUpForm'
 import { updateSignUpForm, initializeSignUpForm, modalChangeStatus } from '../../store/actions/sync'
 import { setFormResultAsync } from '../../store/actions/async'
-// import { validateFormAsync } from '../../store/actions/async'
 
+/**
+ * Container connector
+ */
 export default connect(
+  /**
+   * State mapper
+   */
   function mapStateToProps (state) {
     return {
       formRecipe: state.signUpForm.formRecipe,
@@ -16,10 +21,12 @@ export default connect(
       modal: state.signUpModal
     }
   },
+  /**
+   * Action dispatcher
+   */
   function mapDispatchToProps (dispatch) {
     return {
       updateSignUpForm: (fieldId, fieldValue) => dispatch(updateSignUpForm(fieldId, fieldValue)),
-      // updateSignUpForm: (fieldId, fieldValue) => dispatch(validateFormAsync(fieldId, fieldValue)),
       initializeSignUpForm: () => dispatch(initializeSignUpForm()),
       setResultAsync: (formValues) => dispatch(setFormResultAsync(formValues)),
       modalChangeStatus: (name, status) => dispatch(modalChangeStatus(name, status))

@@ -1,8 +1,8 @@
-import { resultSignUpForm, pendingSignUpForm, updateSignUpForm, modalChangeStatus } from './sync'
+import { resultSignUpForm, pendingSignUpForm, modalChangeStatus } from './sync'
 
 /**
- *
- * @param {*} formResult
+ * Fake API call to send the form input values
+ * @param {object} formResult
  */
 export function setFormResultAsync (formResult) {
   return async function (dispatch) {
@@ -16,23 +16,5 @@ export function setFormResultAsync (formResult) {
         }
       }, 700 * i)
     }
-  }
-}
-
-/**
- *
- * @param {*} fieldId
- * @param {*} fieldValue
- */
-export function validateFormAsync (fieldId, fieldValue) {
-  return async function (dispatch) {
-    dispatch(pendingSignUpForm(0))
-    setTimeout(() => {
-      dispatch(pendingSignUpForm(2))
-    }, 700)
-    setTimeout(() => {
-      dispatch(pendingSignUpForm(3))
-      dispatch(updateSignUpForm(fieldId, fieldValue))
-    }, 1400)
   }
 }

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+/**
+ * SelectField component
+ */
 class SelectField extends Component {
   render () {
     return (

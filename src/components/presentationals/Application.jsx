@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import SignUpFormContainer from '../containers/SignUpFormContainer'
 import PreSignUp from './PreSignUp'
 
+/**
+ * Application component
+ */
 class Application extends Component {
   constructor (props) {
     super(props)
